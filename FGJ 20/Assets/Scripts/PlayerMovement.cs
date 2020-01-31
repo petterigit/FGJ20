@@ -6,6 +6,8 @@ public class PlayerMovement : MonoBehaviour
 {
 	
 	public float speed;  
+    public string horizontal;
+    public string vertical;
 
     void Start()
     {
@@ -15,8 +17,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 		
-        float v = Input.GetAxis("Vertical");
-		float h = Input.GetAxis("Horizontal");
+        float v = Input.GetAxis(vertical);
+		float h = Input.GetAxis(horizontal);
 		
 		float dy = v * speed * Time.deltaTime;
 		float dx = h * speed * Time.deltaTime;
