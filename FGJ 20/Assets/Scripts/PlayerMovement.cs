@@ -8,6 +8,8 @@ public class PlayerMovement : MonoBehaviour
 	public float speed;  
     public string horizontal;
     public string vertical;
+    
+
 
     void Start()
     {
@@ -22,8 +24,14 @@ public class PlayerMovement : MonoBehaviour
 		
 		float dy = v * speed * Time.deltaTime;
 		float dx = h * speed * Time.deltaTime;
-		
-		transform.position = new Vector2(transform.position.x+dx, transform.position.y+dy);
+
+
+		Vector2 newPosition = new Vector2(transform.position.x+dx, transform.position.y+dy);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, newPosition);
+        if (hit.collider != null) {
+            Debug.Log("Ping");
+        }
+		transform.position = newPosition;
+        
     }
-	
 }
