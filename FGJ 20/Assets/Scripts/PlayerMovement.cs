@@ -4,15 +4,24 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    // Start is called before the first frame update
+	
+	public float speed;  
+
     void Start()
     {
-        
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
-        
+		
+        float v = Input.GetAxis("Vertical");
+		float h = Input.GetAxis("Horizontal");
+		
+		float dy = v * speed * Time.deltaTime;
+		float dx = h * speed * Time.deltaTime;
+		
+		transform.position = new Vector2(transform.position.x+dx, transform.position.y+dy);
     }
+	
 }
