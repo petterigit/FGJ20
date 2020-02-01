@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 public class UIController : MonoBehaviour
@@ -11,6 +12,7 @@ public class UIController : MonoBehaviour
     public TextMeshProUGUI redpercentage;
     public Slider blueslider;
     public TextMeshProUGUI bluepercentage;
+    public GameObject gameoverbackground;
     // Start is called before the first frame update
     
     public void SetHealth(float percentage, int team) {
@@ -23,4 +25,18 @@ public class UIController : MonoBehaviour
             bluepercentage.text = Mathf.RoundToInt(percentage * 100).ToString() + "%";
         }
     }
+
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(6);
+        SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+    }
+
+    public void GameOver()
+    {
+        gameoverbackground.SetActive(true);
+        StartCoroutine(waiter());
+
+    }
 }
+

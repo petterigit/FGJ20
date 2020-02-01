@@ -16,6 +16,8 @@ public class MenuPlayerMovement : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
 
+    public GameObject infotext;
+
     private int cooldown = 10;
     private int speedMultiplier = 3;
     private string area = "none";
@@ -39,7 +41,7 @@ public class MenuPlayerMovement : MonoBehaviour
         {
             if (cooldown == 0)
             {
-                Debug.Log("Dash");
+                //Debug.Log("Dash");
                 cooldown = 120;
                 speedMultiplier = 3;
             }
@@ -82,17 +84,18 @@ public class MenuPlayerMovement : MonoBehaviour
         {
             if (area == "PlayButton")
             {
-                Debug.Log("is play time");
+                //Debug.Log("is play time");
                 SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
 
             }
             else if (area == "InfoButton")
             {
+                infotext.SetActive(true);
                 Debug.Log("is info time");
             }
             else if (area == "ExitButton")
             {
-                Debug.Log("is exit time");
+                //Debug.Log("is exit time");
                 Application.Quit();
             }
         }
@@ -103,22 +106,22 @@ public class MenuPlayerMovement : MonoBehaviour
         //Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
         if (col.gameObject.tag == "PlayButton")
         {
-            Debug.Log("setting area: play");
+            //Debug.Log("setting area: play");
             area = "PlayButton";
         }
         else if (col.gameObject.tag == "InfoButton")
         {
-            Debug.Log("setting area: info");
+            //Debug.Log("setting area: info");
             area = "InfoButton";
         }
         else if (col.gameObject.tag == "ExitButton")
         {
-            Debug.Log("setting area: exit");
+            //Debug.Log("setting area: exit");
             area = "ExitButton";
         }
         else
         {
-            Debug.Log("setting area: none");
+            //Debug.Log("setting area: none");
             area = "none";
         }
 
