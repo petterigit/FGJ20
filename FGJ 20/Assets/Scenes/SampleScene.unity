@@ -257,27 +257,7 @@ MonoBehaviour:
   sr: {fileID: 176026977}
   margin: 0.8
   tr: {fileID: 176026976}
-  bh: {fileID: 176026981}
   pivot: {x: 0, y: 0}
-  maxPixels: 0
-  currentPixels: 0
---- !u!114 &176026981
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 176026978}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89a51ec12184304b9502199e6b63984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  currentHealth: 0
-  sinkingSpeedMin: 0
-  sinkingSpeedMax: 2
-  sinkingPercentage: 0
 --- !u!1 &511764910 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5793272751451202004, guid: a6ec4127f9bb7f0498274dc1d8b15af7,
@@ -590,27 +570,7 @@ MonoBehaviour:
   sr: {fileID: 1241902692}
   margin: 0.8
   tr: {fileID: 1241902693}
-  bh: {fileID: 1241902695}
   pivot: {x: 0, y: 0}
-  maxPixels: 0
-  currentPixels: 0
---- !u!114 &1241902695
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241902690}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b89a51ec12184304b9502199e6b63984, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  health: 100
-  currentHealth: 0
-  sinkingSpeedMin: 0
-  sinkingSpeedMax: 2
-  sinkingPercentage: 0
 --- !u!1 &1318043514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7899784676953393881, guid: 2a255d652be627b44b53e10bf9ec44f8,

@@ -1,14 +1,16 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-public class PlayerMovement : MonoBehaviour
+public class MenuPlayerMovement : MonoBehaviour
 {
 
     public float speed;
     public string horizontal;
     public string vertical;
     public string hammerbutton;
+    public string menubutton;
     public string dashbutton;
     public int dashtime;
     public Animator animator;
@@ -17,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private bool hammertime = false;
     private int cooldown = 10;
     private int speedMultiplier = 3;
+    private string area = "none";
 
     void Start()
     {
@@ -27,7 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
 
-
+        OnClickMenu(area);
         Move(speed);
         hammertime = Repair(hammertime);
         GetDash();
@@ -95,25 +98,65 @@ public class PlayerMovement : MonoBehaviour
         return hammertime;
     }
 
+    void OnClickMenu(string area)
+    {
+        if (Input.GetButton(menubutton))
+        {
+            if (area == "PlayButton")
+            {
+                Debug.Log("is play time");
+                SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
+
+            }
+            else if (area == "InfoButton")
+            {
+                Debug.Log("is info time");
+            }
+            else if (area == "ExitButton")
+            {
+                Debug.Log("is exit time");
+                area = "none";
+                Application.Quit();
+            }
+        }
+    }
+
     void OnTriggerStay2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
         if (col.gameObject.tag == "Boat")
         {
             speed = 3;
+            area = "Boat";
         }
         else if (col.gameObject.tag == "Plank")
         {
             speed = 2;
+            area = "Plank";
+        }
+        else if (col.gameObject.tag == "PlayButton")
+        {
+            area = "PlayButton";
+        }
+        else if (col.gameObject.tag == "InfoButton")
+        {
+
+            area = "InfoButton";
+        }
+        else if (col.gameObject.tag == "ExitButton")
+        {
+
+            area = "ExitButton";
         }
 
     }
 
     void OnTriggerExit2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank")
+        if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank" || col.gameObject.tag == "PlayButton" || col.gameObject.tag == "InfoButton" || col.gameObject.tag == "ExitButton")
         {
             speed = 1;
+            area = "none";
         }
     }
 
