@@ -229,6 +229,11 @@ PrefabInstance:
       propertyPath: rb
       value: 
       objectReference: {fileID: 1874888031}
+    - target: {fileID: 8118117585034218529, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: ownCollider
+      value: 
+      objectReference: {fileID: 1876346530}
     - target: {fileID: 8118117585034218530, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -826,6 +831,79 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &577899205
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 577899208}
+  - component: {fileID: 577899207}
+  - component: {fileID: 577899206}
+  m_Layer: 5
+  m_Name: GameOverBackground
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &577899206
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577899205}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: 8553f38bfb91d4b468bc74ea6e97bc8b, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &577899207
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577899205}
+  m_CullTransparentMesh: 0
+--- !u!224 &577899208
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 577899205}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1225652170}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &701386430 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5800800788777339645, guid: 37d79e6cf93bc3443a18e840a552fb35,
@@ -1680,6 +1758,7 @@ RectTransform:
   - {fileID: 1170719567}
   - {fileID: 1582523420}
   - {fileID: 1059819133}
+  - {fileID: 577899208}
   m_Father: {fileID: 1874886057}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2218,9 +2297,16 @@ MonoBehaviour:
   redpercentage: {fileID: 1582523421}
   blueslider: {fileID: 1170719568}
   bluepercentage: {fileID: 1059819134}
+  gameoverbackground: {fileID: 577899205}
 --- !u!50 &1874888031 stripped
 Rigidbody2D:
   m_CorrespondingSourceObject: {fileID: 8118117584801088875, guid: 0ffbd15806c65774fb5ace6d3518523f,
+    type: 3}
+  m_PrefabInstance: {fileID: 64789305}
+  m_PrefabAsset: {fileID: 0}
+--- !u!61 &1876346530 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
     type: 3}
   m_PrefabInstance: {fileID: 64789305}
   m_PrefabAsset: {fileID: 0}
@@ -2488,6 +2574,12 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2084710146}
   m_CullTransparentMesh: 0
+--- !u!61 &2106348596 stripped
+BoxCollider2D:
+  m_CorrespondingSourceObject: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+    type: 3}
+  m_PrefabInstance: {fileID: 8118117586619797899}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4414961239055700795
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2958,6 +3050,11 @@ PrefabInstance:
       propertyPath: pui
       value: 
       objectReference: {fileID: 1672136768}
+    - target: {fileID: 8118117585034218529, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: ownCollider
+      value: 
+      objectReference: {fileID: 2106348596}
     - target: {fileID: 8118117585034218530, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: m_LocalPosition.x
