@@ -76,6 +76,19 @@ public class BoatController : MonoBehaviour
         return plank;
     }
 
+    public void Place(Vector2 pos, Sprite sprite)
+    {
+        var position = TextureSpaceCoord(tr, pos, sr);
+
+        var tex = CreateCopyTexture(sr.sprite.texture);
+
+        int pixelCount = sprite.texture.GetPixels().Length;
+        for (int i=0; i < pixelCount; i++)
+        {
+
+        }
+    }
+
     static public Vector2 TextureSpaceCoord(Transform tr, Vector3 worldPos, SpriteRenderer sr)
     {
         float ppu = sr.sprite.pixelsPerUnit;
