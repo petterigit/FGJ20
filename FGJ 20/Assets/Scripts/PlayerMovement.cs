@@ -8,8 +8,10 @@ public class PlayerMovement : MonoBehaviour
 	public float speed;  
     public string horizontal;
     public string vertical;
+    public string firebutton;
     public Animator animator;
 
+    private bool hammertime = false;
 
     void Start()
     {
@@ -37,6 +39,15 @@ public class PlayerMovement : MonoBehaviour
             //Debug.Log("Ping");
         }
 		transform.position = newPosition;
+
+        if (Input.GetButton(firebutton)) {
+            //Debug.Log("Ping " + firebutton);
+            hammertime = true;
+            animator.SetBool("Hammertime", hammertime);
+        } else {
+            hammertime = false;
+            animator.SetBool("Hammertime", hammertime);
+        }
         
     }
 }
