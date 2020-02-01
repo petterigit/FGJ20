@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BoatHealth : MonoBehaviour
 {
+    public UIController ui;
+    public int team;
     public float health;
     [SerializeField] private float currentHealth;
     public float sinkingSpeedMin;
@@ -20,8 +22,9 @@ public class BoatHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        health -= Mathf.Lerp(sinkingSpeedMax, sinkingSpeedMin, sinkingPercentage) * Time.deltaTime;
-        if(health < 0) {
+        currentHealth -= Mathf.Lerp(sinkingSpeedMax, sinkingSpeedMin, sinkingPercentage) * Time.deltaTime;
+        ui.SetHealth(currentHealth / health, team);
+        if(currentHealth < 0) {
             // Game over
         }
     }
