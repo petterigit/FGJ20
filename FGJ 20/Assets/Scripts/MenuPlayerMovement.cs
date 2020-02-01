@@ -155,7 +155,6 @@ public class MenuPlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank" || col.gameObject.tag == "PlayButton" || col.gameObject.tag == "InfoButton" || col.gameObject.tag == "ExitButton")
         {
-            speed = 1;
             area = "none";
         }
     }
