@@ -13,10 +13,6 @@ public class PlayerMovement : MonoBehaviour
 
     private bool hammertime = false;
 
-    
-
-    
-
     // Update is called once per frame
     void FixedUpdate()
     {
@@ -28,8 +24,6 @@ public class PlayerMovement : MonoBehaviour
         
         
     }
-
-    
 
     void Move(float speed) 
     {
@@ -61,15 +55,22 @@ public class PlayerMovement : MonoBehaviour
         return hammertime;
     }
 
-    void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerStay2D(Collider2D col)
     {
-        Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
-        if (col.gameObject.tag == "boat") {
+        //Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
+        if (col.gameObject.tag == "Boat") {
             speed = 3;
-        } else if (col.gameObject.tag == "water" ) {
-            speed = 1;
+        } else if (col.gameObject.tag == "Plank" ) {
+            speed = 2;
         }
 
+    }
+
+    void OnTriggerExit2D(Collider2D col)
+    {
+        if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank") {
+            speed = 1;
+        }
     }
     
 }
