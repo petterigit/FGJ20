@@ -7,8 +7,10 @@ public class BoatController : MonoBehaviour
     public SpriteRenderer sr;
     public float margin;
     public Transform tr;
-    [SerializeField]
-    private Vector2 pivot;
+    public BoatHealth bh;
+    [SerializeField] private Vector2 pivot;
+    [SerializeField] private int maxPixels;
+    [SerializeField] private int currentPixels;
 
     private void Start()
     {
@@ -17,6 +19,8 @@ public class BoatController : MonoBehaviour
         tr = GetComponent<Transform>();
         */
         pivot = new Vector2(0.5f, 0.5f);
+        maxPixels = sr.sprite.texture.GetPixels().Length;
+        currentPixels = maxPixels;
     }
 
     public Sprite Saw(Vector2 s, Vector2 e)
@@ -42,7 +46,7 @@ public class BoatController : MonoBehaviour
         int actualStartX = 0;
         int actualStartY = 0;
 
-        Debug.Log(string.Format("Sawing from {0} to {1}", start, end));
+        //Debug.Log(string.Format("Sawing from {0} to {1}", start, end));
 
         if (start.x < end.x) { actualStartX = (int)start.x; }
         else { actualStartX = (int)end.x; }
@@ -67,6 +71,10 @@ public class BoatController : MonoBehaviour
         Sprite newBoat = Sprite.Create(tex, sr.sprite.rect, pivot);
         sr.sprite = newBoat;
 
+        // Calculate health based on pixels
+        currentPixels = currentPixels - pixels.Length;
+        bh.sinkingPercentage = currentPixels / maxPixels;
+
         // Return the stolen piece
         Texture2D planktex = new Texture2D(size.x, size.y);
         planktex.SetPixels(pixels);
@@ -89,6 +97,7 @@ public class BoatController : MonoBehaviour
         var empty = new Color(0,0,0,0);
         Vector2Int pixelPosition = new Vector2Int();
 
+        int addedPixels = 0;
         for (int i=0; i < pixelCount; i++)
         {
             pixelPosition.x = (int)position.x + Mathf.FloorToInt(i % size.x - size.x / 2);
@@ -99,9 +108,14 @@ public class BoatController : MonoBehaviour
                 if(pixelPosition.x >= 0 &&  pixelPosition.y >= 0 &&
                 pixelPosition.x < tex.width && pixelPosition.y < tex.height) {
                     tex.SetPixel(pixelPosition.x, pixelPosition.y, pixels[i]);
+                    addedPixels++;
                 }
             }
         }
+
+        // Update health
+        currentPixels = Mathf.Clamp(currentPixels + addedPixels, 0, maxPixels);
+        bh.sinkingPercentage = currentPixels / maxPixels;
 
         tex.Apply(false, false);
         Sprite newSprite = Sprite.Create(tex, sr.sprite.rect, pivot);
