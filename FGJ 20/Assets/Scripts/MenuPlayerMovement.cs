@@ -16,6 +16,8 @@ public class MenuPlayerMovement : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
 
+    public GameObject infotext;
+
     private int cooldown = 10;
     private int speedMultiplier = 3;
     private string area = "none";
@@ -88,7 +90,8 @@ public class MenuPlayerMovement : MonoBehaviour
             }
             else if (area == "InfoButton")
             {
-                //Debug.Log("is info time");
+                infotext.SetActive(true);
+                Debug.Log("is info time");
             }
             else if (area == "ExitButton")
             {
