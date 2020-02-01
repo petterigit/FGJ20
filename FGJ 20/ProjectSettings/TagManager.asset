@@ -7,6 +7,9 @@ TagManager:
   - Boat
   - Water
   - Plank
+  - PlayButton
+  - InfoButton
+  - ExitButton
   layers:
   - Default
   - TransparentFX
