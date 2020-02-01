@@ -8,7 +8,8 @@ public class PlayerMovement : MonoBehaviour
 	public float speed;  
     public string horizontal;
     public string vertical;
-    public string firebutton;
+    public string hammerbutton;
+    public string dashbutton;
     public int dashtime;
     public Animator animator;
 
@@ -31,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     void GetDash() {
-        if (Input.GetButton(firebutton)) 
+        if (Input.GetButton(dashbutton)) 
             {
                 if (cooldown == 0) 
                 {
@@ -69,7 +70,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
     bool Repair(bool hammertime) {
-        if (Input.GetButton(firebutton)) {
+        if (Input.GetButton(hammerbutton)) {
             hammertime = true;
             animator.SetBool("Hammertime", hammertime);
         } else {
