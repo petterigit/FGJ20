@@ -80,13 +80,32 @@ public class BoatController : MonoBehaviour
     {
         var position = TextureSpaceCoord(tr, pos, sr);
 
-        var tex = CreateCopyTexture(sr.sprite.texture);
+        Vector2 size = new Vector2(sprite.texture.width, sprite.texture.height);
 
-        int pixelCount = sprite.texture.GetPixels().Length;
+        var tex = CreateCopyTexture(sr.sprite.texture);
+        var pixels = sprite.texture.GetPixels();
+
+        int pixelCount = pixels.Length;
+        var empty = new Color(0,0,0,0);
+        Vector2Int pixelPosition = new Vector2Int();
+
         for (int i=0; i < pixelCount; i++)
         {
+            pixelPosition.x = (int)position.x + Mathf.FloorToInt(i % size.x - size.x / 2);
+            pixelPosition.y = (int)position.y + Mathf.FloorToInt(i / size.x - size.y / 2);
 
+
+            if(pixels[i] != empty) {
+                if(pixelPosition.x >= 0 &&  pixelPosition.y >= 0 &&
+                pixelPosition.x < tex.width && pixelPosition.y < tex.height) {
+                    tex.SetPixel(pixelPosition.x, pixelPosition.y, pixels[i]);
+                }
+            }
         }
+
+        tex.Apply(false, false);
+        Sprite newSprite = Sprite.Create(tex, sr.sprite.rect, pivot);
+        sr.sprite = newSprite;
     }
 
     static public Vector2 TextureSpaceCoord(Transform tr, Vector3 worldPos, SpriteRenderer sr)
