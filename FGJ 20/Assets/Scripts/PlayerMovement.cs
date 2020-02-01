@@ -14,10 +14,12 @@ public class PlayerMovement : MonoBehaviour
     public Animator animator;
     public PlayerSawingAction psa;
     public Rigidbody2D rb;
+    public BoxCollider2D ownCollider;
 
     private bool hammertime = false;
     private int cooldown = 10;
     private int speedMultiplier = 3;
+    private Collider2D[] results;
 
     void Start()
     {
@@ -29,15 +31,49 @@ public class PlayerMovement : MonoBehaviour
     {
 		if(psa.isComboing) {
             // Set hammering animation here
+            hammertime = true;
+            animator.SetBool("Hammertime", hammertime);
             return;
+        } 
+        else 
+        {
+            hammertime = false;
+            animator.SetBool("Hammertime", hammertime);
+
         }
-        
+        results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x/2);
+        if (results.Length > 0) 
+        {
+            for (int i=0; i<results.Length; i++) 
+            {
+                if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
+                    var enemy = results[i].gameObject;
+                    if (Input.GetButton(hammerbutton)) {
+                        Debug.Log("It's hammer time");
+                        enemy.GetComponent<PlayerSawingAction>().CancelCombo();
+                        var myPos = transform.position;
+                        var enemyPos = enemy.transform.position;
+                        int moveX;
+                        int moveY;
+                        if (enemyPos.x - myPos.x > 0) {
+                            moveX = 1;
+                        } else {
+                            moveX = -1;
+                        }
+                        if (enemyPos.y - myPos.y > 0) {
+                            moveY = 1;
+                        } else {
+                            moveY = -1;
+                        }
+                        enemy.transform.position = new Vector2(enemyPos.x + moveX, enemyPos.y + moveY);
+            }
+                }
+            }
+        }
+
         Move(speed);
-        hammertime = Repair(hammertime);
+        
         GetDash();
-
-
-
 
     }
 
@@ -84,24 +120,8 @@ public class PlayerMovement : MonoBehaviour
         transform.position = newPosition;
     }
 
-    bool Repair(bool hammertime)
-    {
-        if (Input.GetButton(hammerbutton))
-        {
-            hammertime = true;
-            animator.SetBool("Hammertime", hammertime);
-        }
-        else
-        {
-            hammertime = false;
-            animator.SetBool("Hammertime", hammertime);
-        }
-        return hammertime;
-    }
-
     void OnTriggerStay2D(Collider2D col)
     {
-        //Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
         if (col.gameObject.tag == "Boat")
         {
             speed = 3;
@@ -110,7 +130,6 @@ public class PlayerMovement : MonoBehaviour
         {
             speed = 2;
         }
-
     }
 
     void OnTriggerExit2D(Collider2D col)
