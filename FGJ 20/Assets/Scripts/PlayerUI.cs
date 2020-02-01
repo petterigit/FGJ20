@@ -5,31 +5,43 @@ using UnityEngine;
 public class PlayerUI : MonoBehaviour
 {
     public Dictionary<string, int> buttons;
+    public Transform player;
+    public Vector3 offset;
     public float margin;
     public Sprite[] sprites;
     public GameObject button;
 
     void Start() {
+        buttons = new Dictionary<string, int>();
         buttons.Add("Fire1", 0);
         buttons.Add("Fire2", 1);
         buttons.Add("Fire3", 2);
         buttons.Add("Fire4", 3);
     }
 
-    public void GenerateInputs(string[] inputs) {
+    public void GenerateInputs(string[] inputs, int startingIndex) {
+        DestroyInputs();
+
         float buttonWidth = sprites[0].texture.width;
-        float width = inputs.Length * buttonWidth + (inputs.Length - 1) * margin;
-        for(int i = 0; i<inputs.Length; i++) {
+        float ppu = sprites[0].pixelsPerUnit;
+        float width = ((inputs.Length - startingIndex) * buttonWidth / ppu  + (inputs.Length - 1 - startingIndex) * margin);
+        Debug.Log(width + " " + startingIndex);
+
+        for(int i = startingIndex; i<inputs.Length; i++) {
             if(buttons.TryGetValue(inputs[i].Substring(0, 5), out int iter)) {
                 var newButton = Instantiate(button);
-                newButton.transform.position = new Vector3(width + i * buttonWidth + (i-1) * margin, 0, 0);
-                newButton.transform.SetParent(transform);
+
+                newButton.transform.position = new Vector3(-width / 2 + (i - startingIndex) * buttonWidth / ppu + (i - startingIndex) * margin, 0, 0);
+                newButton.transform.position += player.position + offset;
+                newButton.transform.SetParent(transform, true);
                 newButton.GetComponent<SpriteRenderer>().sprite = sprites[iter];
             }
         }
     }
 
     public void DestroyInputs() {
-        
+        for(int i=0; i< transform.childCount; i++) {
+            Destroy(transform.GetChild(i).gameObject);
+        }
     }
 }

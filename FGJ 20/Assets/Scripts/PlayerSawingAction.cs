@@ -9,9 +9,11 @@ public class PlayerSawingAction : MonoBehaviour
     public BoatController enemybc;
     public BoatController bc;
     public InputComboGeneration icg;
+    public PlayerUI pui;
 
 
     public bool isComboing = false; 
+
     [SerializeField]
     private bool isSawing = false;
     [SerializeField]
@@ -49,6 +51,7 @@ public class PlayerSawingAction : MonoBehaviour
                 if(Input.GetButtonDown(actionButtons[i])) {
                     if(actionButtons[i] == combolist[comboiter]) {
                         comboiter++;
+                        pui.GenerateInputs(combolist, comboiter);
                         if(comboiter >= combolist.Length) {
                             DoSaw();
                             CancelCombo();
@@ -92,6 +95,9 @@ public class PlayerSawingAction : MonoBehaviour
                 combolist = icg.CreateCombo(playerid, (int)Vector2.Distance(sawStart, sawEnd));
                 comboiter = 0;
                 isComboing = true;
+
+                // Create UI
+                pui.GenerateInputs(combolist, 0);
             }
             
         }
@@ -121,5 +127,7 @@ public class PlayerSawingAction : MonoBehaviour
 
         sawStart = initVector;
         sawEnd = initVector;
+
+        pui.DestroyInputs();
     }
 }
