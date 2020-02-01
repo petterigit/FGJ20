@@ -489,6 +489,40 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0a2def5e787c0043bb3a861f2229129, type: 3}
+--- !u!1 &1241902690 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6489062302168786605, guid: f0a2def5e787c0043bb3a861f2229129,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115653671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &1241902692 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6908053137538028450, guid: f0a2def5e787c0043bb3a861f2229129,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115653671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &1241902693 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8920629515627658382, guid: f0a2def5e787c0043bb3a861f2229129,
+    type: 3}
+  m_PrefabInstance: {fileID: 1115653671}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1241902694
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1241902690}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59cb982f9fa967643a425ebebf30c71c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sr: {fileID: 1241902692}
+  margin: 0.8
+  tr: {fileID: 1241902693}
+  pivot: {x: 0, y: 0}
 --- !u!1 &1318043514 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7899784676953393881, guid: 2a255d652be627b44b53e10bf9ec44f8,
@@ -548,6 +582,23 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &1975047393
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975047386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cbeaf9292d34f6d41be9ae930c74afd8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  actionButton: Fire1_P1
+  bc: {fileID: 1241902694}
+  isSawing: 0
+  sawStart: {x: 0, y: 0}
+  sawEnd: {x: 0, y: 0}
 --- !u!1001 &1288142030239047809
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -661,7 +712,7 @@ PrefabInstance:
     - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
         type: 3}
       propertyPath: firebutton
-      value: Fire1_P1
+      value: Fire1_P2
       objectReference: {fileID: 0}
     - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
         type: 3}
