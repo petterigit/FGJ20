@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class BoatHealth : MonoBehaviour
 {
@@ -17,15 +18,21 @@ public class BoatHealth : MonoBehaviour
         sinkingPercentage = 1f;
     }
 
+    IEnumerator waiter()
+    {
+        yield return new WaitForSeconds(6);
+    }
+
     // Update is called once per frame
     void Update()
     {
         health -= Mathf.Lerp(sinkingSpeedMax, sinkingSpeedMin, sinkingPercentage) * Time.deltaTime;
         if(health < 0) {
-            
-
-            // Show button
+            // Game over
             GameObject.Find("GameOverBackround").transform.localScale = new Vector3(1, 1, 1);
+            // Wait some time and then go back to main menu
+            StartCoroutine(waiter());
+            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         } else
         {
             GameObject.Find("GameOverBackround").transform.localScale = new Vector3(0, 0, 0);
