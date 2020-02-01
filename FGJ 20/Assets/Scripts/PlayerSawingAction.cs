@@ -4,10 +4,14 @@ using UnityEngine;
 
 public class PlayerSawingAction : MonoBehaviour
 {
-    public string actionButton;
+    public string playerid;
+    public string[] actionButtons;
     public BoatController enemybc;
     public BoatController bc;
+    public InputComboGeneration icg;
 
+
+    public bool isComboing = false; 
     [SerializeField]
     private bool isSawing = false;
     [SerializeField]
@@ -24,6 +28,9 @@ public class PlayerSawingAction : MonoBehaviour
 
     private Vector2 initVector;
 
+    private string[] combolist = new string[0];
+    private int comboiter;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -37,8 +44,30 @@ public class PlayerSawingAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(isComboing) {
+            for(int i=0; i<actionButtons.Length; i++) {
+                if(Input.GetButtonDown(actionButtons[i])) {
+                    if(actionButtons[i] == combolist[comboiter]) {
+                        comboiter++;
+                        if(comboiter >= combolist.Length) {
+                            DoSaw();
+                            CancelCombo();
+                            break;
+                        }
+                    }
+                    else {
+                        CancelCombo();
+                        break;
+                    }
+                }
+            }
+
+            
+
+            return;
+        }
         // Start sawing
-        if(Input.GetButtonDown(actionButton) && !isCarrying)
+        if(Input.GetButtonDown(actionButtons[0]) && !isCarrying)
         {
             isSawing = true;
             sawStart = transform.position;
@@ -46,32 +75,51 @@ public class PlayerSawingAction : MonoBehaviour
         }
 
         // Stop Sawing
-        if (Input.GetButtonUp(actionButton) && isSawing && !isCarrying)
+        if (Input.GetButtonUp(actionButtons[0]) && isSawing && !isCarrying)
         {
             isSawing = false;
             sawEnd = transform.position;
         }
 
-        // Do the sawing
+        // Start the combo
         if(sawStart != initVector && sawEnd != initVector)
         {
-            plank = enemybc.Saw(sawStart, sawEnd);
-            if(plank != null)
-            {
-                isCarrying = true;
+            if(!enemybc.CheckIfInside(sawStart)) {
+                sawStart = initVector;
+                sawEnd = initVector;
             }
-
-            sawStart = initVector;
-            sawEnd = initVector;
+            else if(combolist.Length <= 0) {
+                combolist = icg.CreateCombo(playerid, (int)Vector2.Distance(sawStart, sawEnd));
+                comboiter = 0;
+                isComboing = true;
+            }
+            
         }
 
         // Place plank
-        if(Input.GetButton(actionButton) && isCarrying)
+        if(Input.GetButton(actionButtons[0]) && isCarrying)
         {
             isCarrying = false;
             bc.Place(transform.position, plank);
             plank = null;
         }
 
-    }    
+    }
+
+    private void DoSaw() {
+        plank = enemybc.Saw(sawStart, sawEnd);
+        if(plank != null)
+        {
+            isCarrying = true;
+        }
+    }
+
+    public void CancelCombo() {
+        comboiter = 0;
+        combolist = new string[0];
+        isComboing = false;
+
+        sawStart = initVector;
+        sawEnd = initVector;
+    }
 }

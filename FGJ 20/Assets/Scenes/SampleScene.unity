@@ -121,6 +121,56 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &100458833
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 100458835}
+  - component: {fileID: 100458834}
+  m_Layer: 0
+  m_Name: MasterObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &100458834
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100458833}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 44cbcbc90802d174198ff83eb88aad70, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inputs:
+  - Fire1
+  - Fire2
+  - Fire3
+  - Fire4
+  minComboLength: 2
+  maxComboLength: 8
+--- !u!4 &100458835
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100458833}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &176026975
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -682,9 +732,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbeaf9292d34f6d41be9ae930c74afd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  actionButton: Fire1_P1
+  playerid: P1
+  actionButtons:
+  - Fire1_P1
+  - Fire2_P1
+  - Fire3_P1
+  - Fire4_P1
   enemybc: {fileID: 1241902694}
   bc: {fileID: 176026979}
+  icg: {fileID: 100458834}
+  isComboing: 0
   isSawing: 0
   isCarrying: 0
   sawStart: {x: 0, y: 0}
@@ -815,6 +872,21 @@ PrefabInstance:
       propertyPath: dashtime
       value: 40
       objectReference: {fileID: 0}
+    - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
+        type: 3}
+      propertyPath: hammerbutton
+      value: Fire2_P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
+        type: 3}
+      propertyPath: dashbutton
+      value: Fire3_P1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
+        type: 3}
+      propertyPath: psa
+      value: 
+      objectReference: {fileID: 1975047393}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d36f11e59324d4aa5bf3df3ec63281, type: 3}
 --- !u!1001 &4414961239055700795
@@ -1224,6 +1296,21 @@ PrefabInstance:
         type: 3}
       propertyPath: dashtime
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604177312596698565, guid: 6117e62ed196a0447a5276dbb540c72a,
+        type: 3}
+      propertyPath: hammerbutton
+      value: Fire2_P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604177312596698565, guid: 6117e62ed196a0447a5276dbb540c72a,
+        type: 3}
+      propertyPath: dashbutton
+      value: Fire3_P2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604177312596698565, guid: 6117e62ed196a0447a5276dbb540c72a,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8604177312596698567, guid: 6117e62ed196a0447a5276dbb540c72a,
         type: 3}

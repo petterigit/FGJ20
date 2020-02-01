@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public string dashbutton;
     public int dashtime;
     public Animator animator;
+    public PlayerSawingAction psa;
 
     private bool hammertime = false;
     private int cooldown = 10;
@@ -20,7 +21,10 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-		
+		if(psa.isComboing) {
+            // Set hammering animation here
+            return;
+        }
         
         Move(speed);
         hammertime = Repair(hammertime);

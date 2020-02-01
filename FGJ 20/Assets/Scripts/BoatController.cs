@@ -63,7 +63,7 @@ public class BoatController : MonoBehaviour
 
         var emptyPixels= CreateEmptyPixels(size.x * size.y);
 
-        Debug.Log(string.Format("Start: {0} {1}, Size: {2} {3}", actualStartX, actualStartY, size.x, size.y));
+        //Debug.Log(string.Format("Start: {0} {1}, Size: {2} {3}", actualStartX, actualStartY, size.x, size.y));
 
         tex.SetPixels(actualStartX, actualStartY, size.x, size.y, emptyPixels);
         tex.Apply(false, false);
@@ -120,6 +120,15 @@ public class BoatController : MonoBehaviour
         tex.Apply(false, false);
         Sprite newSprite = Sprite.Create(tex, sr.sprite.rect, pivot);
         sr.sprite = newSprite;
+    }
+
+    public bool CheckIfInside(Vector2 worldPos) {
+        var pos = TextureSpaceCoord(tr, worldPos, sr);
+        if(pos.x >= 0 &&  pos.y >= 0 &&
+        pos.x < sr.sprite.texture.width && pos.y < sr.sprite.texture.height) {
+            return true;
+        }
+        return false;
     }
 
     static public Vector2 TextureSpaceCoord(Transform tr, Vector3 worldPos, SpriteRenderer sr)
