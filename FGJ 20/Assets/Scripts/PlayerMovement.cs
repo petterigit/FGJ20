@@ -15,6 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public PlayerSawingAction psa;
     public Rigidbody2D rb;
     public BoxCollider2D ownCollider;
+    public PlayerHammerAction pha;
 
     private bool hammertime = false;
     private int cooldown = 10;
@@ -48,25 +49,19 @@ public class PlayerMovement : MonoBehaviour
             {
                 if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
                     var enemy = results[i].gameObject;
-                    if (Input.GetButton(hammerbutton)) {
+                    if (Input.GetButton(hammerbutton)) 
+                    {
                         Debug.Log("It's hammer time");
-                        enemy.GetComponent<PlayerSawingAction>().CancelCombo();
+                        // Get direction
+                        Vector3 direction;
                         var myPos = transform.position;
                         var enemyPos = enemy.transform.position;
-                        int moveX;
-                        int moveY;
-                        if (enemyPos.x - myPos.x > 0) {
-                            moveX = 1;
-                        } else {
-                            moveX = -1;
-                        }
-                        if (enemyPos.y - myPos.y > 0) {
-                            moveY = 1;
-                        } else {
-                            moveY = -1;
-                        }
-                        enemy.transform.position = new Vector2(enemyPos.x + moveX, enemyPos.y + moveY);
-            }
+                        var heading = enemyPos-myPos;
+
+                        direction = heading.normalized;
+                        // Start hammer action
+                        enemy.GetComponent<PlayerHammerAction>().initFly(direction);
+                    }   
                 }
             }
         }
@@ -76,6 +71,8 @@ public class PlayerMovement : MonoBehaviour
         GetDash();
 
     }
+
+
 
     void GetDash()
     {

@@ -38,7 +38,7 @@ public class BoatHealth : MonoBehaviour
             SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
         } else
         {
-            GameObject.Find("GameOverBackround").transform.localScale = new Vector3(0, 0, 0);
+            //GameObject.Find("GameOverBackround").transform.localScale = new Vector3(0, 0, 0);
         }
     }
 }
