@@ -12,10 +12,16 @@ public class PlayerMovement : MonoBehaviour
     public string dashbutton;
     public int dashtime;
     public Animator animator;
+    public Rigidbody2D rb;
 
     private bool hammertime = false;
     private int cooldown = 10;
     private int speedMultiplier = 3;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
 
     // Update is called once per frame
     void FixedUpdate()
@@ -60,6 +66,7 @@ public class PlayerMovement : MonoBehaviour
             float dx = h * speed * speedMultiplier * Time.deltaTime;
 
             if ( (dy != 0) || (dx != 0) ) {
+                rb.MoveRotation(Mathf.Atan2(v, h) * 180 / Mathf.PI + 90);
                 animator.SetFloat("Speed", 1);
             } else {
                 animator.SetFloat("Speed", 0);
