@@ -97,7 +97,7 @@ public class PlayerSawingAction : MonoBehaviour
         }
 
         // Place plank
-        if(Input.GetButton(actionButtons[0]) && isCarrying)
+        if(Input.GetButtonDown(actionButtons[0]) && isCarrying)
         {
             isCarrying = false;
             bc.Place(transform.position, plank);
