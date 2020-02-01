@@ -22,7 +22,13 @@ public class BoatHealth : MonoBehaviour
     {
         health -= Mathf.Lerp(sinkingSpeedMax, sinkingSpeedMin, sinkingPercentage) * Time.deltaTime;
         if(health < 0) {
-            // Game over
+            
+
+            // Show button
+            GameObject.Find("GameOverBackround").transform.localScale = new Vector3(1, 1, 1);
+        } else
+        {
+            GameObject.Find("GameOverBackround").transform.localScale = new Vector3(0, 0, 0);
         }
     }
 }

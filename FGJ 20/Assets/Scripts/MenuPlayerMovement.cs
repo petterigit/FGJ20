@@ -16,7 +16,6 @@ public class MenuPlayerMovement : MonoBehaviour
     public Animator animator;
     public Rigidbody2D rb;
 
-    private bool hammertime = false;
     private int cooldown = 10;
     private int speedMultiplier = 3;
     private string area = "none";
@@ -29,15 +28,9 @@ public class MenuPlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-
         OnClickMenu(area);
         Move(speed);
-        hammertime = Repair(hammertime);
         GetDash();
-
-
-
-
     }
 
     void GetDash()
@@ -83,21 +76,6 @@ public class MenuPlayerMovement : MonoBehaviour
         transform.position = newPosition;
     }
 
-    bool Repair(bool hammertime)
-    {
-        if (Input.GetButton(hammerbutton))
-        {
-            hammertime = true;
-            animator.SetBool("Hammertime", hammertime);
-        }
-        else
-        {
-            hammertime = false;
-            animator.SetBool("Hammertime", hammertime);
-        }
-        return hammertime;
-    }
-
     void OnClickMenu(string area)
     {
         if (Input.GetButton(menubutton))
@@ -115,7 +93,6 @@ public class MenuPlayerMovement : MonoBehaviour
             else if (area == "ExitButton")
             {
                 Debug.Log("is exit time");
-                area = "none";
                 Application.Quit();
             }
         }
@@ -124,29 +101,25 @@ public class MenuPlayerMovement : MonoBehaviour
     void OnTriggerStay2D(Collider2D col)
     {
         //Debug.Log(col.gameObject.tag + " : " + gameObject.name + " : " + Time.time);
-        if (col.gameObject.tag == "Boat")
+        if (col.gameObject.tag == "PlayButton")
         {
-            speed = 3;
-            area = "Boat";
-        }
-        else if (col.gameObject.tag == "Plank")
-        {
-            speed = 2;
-            area = "Plank";
-        }
-        else if (col.gameObject.tag == "PlayButton")
-        {
+            Debug.Log("setting area: play");
             area = "PlayButton";
         }
         else if (col.gameObject.tag == "InfoButton")
         {
-
+            Debug.Log("setting area: info");
             area = "InfoButton";
         }
         else if (col.gameObject.tag == "ExitButton")
         {
-
+            Debug.Log("setting area: exit");
             area = "ExitButton";
+        }
+        else
+        {
+            Debug.Log("setting area: none");
+            area = "none";
         }
 
     }
@@ -155,7 +128,7 @@ public class MenuPlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank" || col.gameObject.tag == "PlayButton" || col.gameObject.tag == "InfoButton" || col.gameObject.tag == "ExitButton")
         {
-            speed = 1;
+            //speed = 1;
             area = "none";
         }
     }
