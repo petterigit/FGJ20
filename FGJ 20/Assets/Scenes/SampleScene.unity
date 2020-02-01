@@ -668,6 +668,11 @@ PrefabInstance:
       propertyPath: speed
       value: 3
       objectReference: {fileID: 0}
+    - target: {fileID: 1288142031824370987, guid: 58d36f11e59324d4aa5bf3df3ec63281,
+        type: 3}
+      propertyPath: dashtime
+      value: 40
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 58d36f11e59324d4aa5bf3df3ec63281, type: 3}
 --- !u!1001 &4414961239055700795
@@ -1072,6 +1077,11 @@ PrefabInstance:
         type: 3}
       propertyPath: speed
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8604177312596698565, guid: 6117e62ed196a0447a5276dbb540c72a,
+        type: 3}
+      propertyPath: dashtime
+      value: 40
       objectReference: {fileID: 0}
     - target: {fileID: 8604177312596698567, guid: 6117e62ed196a0447a5276dbb540c72a,
         type: 3}
