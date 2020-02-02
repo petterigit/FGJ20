@@ -32,14 +32,13 @@ public class PlayerMovement : MonoBehaviour
     {
 		if(psa.isComboing) {
             // Set hammering animation here
-            hammertime = true;
-            animator.SetBool("Hammertime", hammertime);
+            animator.SetBool("Sawtime", false);
+            animator.SetBool("Hammertime", true);
             return;
         } 
         else 
         {
-            hammertime = false;
-            animator.SetBool("Hammertime", hammertime);
+            animator.SetBool("Hammertime", false);
 
         }
         results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x/2);
@@ -106,13 +105,37 @@ public class PlayerMovement : MonoBehaviour
         if ((dy != 0) || (dx != 0))
         {
             rb.MoveRotation(Mathf.Atan2(v, h) * 180 / Mathf.PI + 90);
-            animator.SetBool("Walk", true);
-            animator.SetBool("PlankWalk", true);
+
+            if (psa.isCarrying) 
+            {
+                animator.SetBool("Walk", false);  
+                animator.SetBool("PlankWalk", true);
+            } else if (psa.isSawing) 
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Sawtime", true);
+            } else 
+            {
+                animator.SetBool("PlankWalk", false);
+                animator.SetBool("Walk", true);    
+            }
+            
+            
         }
         else
         {
-            animator.SetBool("Walk", false);
-            animator.SetBool("PlankWalk", false);
+            if (psa.isCarrying) 
+            {
+                animator.SetBool("PlankWalk", false);
+                animator.SetBool("Plank", true);
+            } else if (psa.isSawing) 
+            {
+                animator.SetBool("Walk", false);
+                animator.SetBool("Sawtime", true);
+            } else 
+            {
+                animator.SetBool("Walk", false);    
+            }
         }
         Vector2 newPosition = new Vector2(transform.position.x + dx, transform.position.y + dy);
 
