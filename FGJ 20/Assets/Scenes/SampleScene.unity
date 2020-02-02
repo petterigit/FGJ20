@@ -2974,6 +2974,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
+      propertyPath: flyduration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: enemybc
