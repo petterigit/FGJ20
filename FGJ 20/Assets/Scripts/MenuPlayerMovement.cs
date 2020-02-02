@@ -17,6 +17,10 @@ public class MenuPlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
 
     public GameObject infotext;
+    public GameObject playbutton;
+    public GameObject infobutton;
+    public GameObject exitbutton;
+
 
     private int cooldown = 10;
     private int speedMultiplier = 3;
@@ -31,8 +35,46 @@ public class MenuPlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         OnClickMenu(area);
+
+        ChangeAlpha(area);
+
         Move(speed);
         GetDash();
+    }
+
+    void ChangeAlpha(string area)
+
+    {
+        Color tmp = playbutton.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.8f;
+        playbutton.GetComponent<SpriteRenderer>().color = tmp;
+
+        tmp = infobutton.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.8f;
+        infobutton.GetComponent<SpriteRenderer>().color = tmp;
+
+        tmp = exitbutton.GetComponent<SpriteRenderer>().color;
+        tmp.a = 0.8f;
+        exitbutton.GetComponent<SpriteRenderer>().color = tmp;
+
+        if (area == "PlayButton")
+        {
+            tmp = playbutton.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            playbutton.GetComponent<SpriteRenderer>().color = tmp;
+        }
+        else if (area == "InfoButton")
+        {
+            tmp = infobutton.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            infobutton.GetComponent<SpriteRenderer>().color = tmp;
+        }
+        else if (area == "ExitButton")
+        {
+            tmp = exitbutton.GetComponent<SpriteRenderer>().color;
+            tmp.a = 1f;
+            exitbutton.GetComponent<SpriteRenderer>().color = tmp;
+        }
     }
 
     void GetDash()
