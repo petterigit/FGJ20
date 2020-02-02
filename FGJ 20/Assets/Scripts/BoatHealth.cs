@@ -28,7 +28,7 @@ public class BoatHealth : MonoBehaviour
         currentHealth -= Mathf.Lerp(sinkingSpeedMax, sinkingSpeedMin, sinkingPercentage) * Time.deltaTime;
         ui.SetHealth(currentHealth / health, team);
         if(currentHealth < 0) {
-            ui.GameOver();
+            ui.GameOver(team);
         }
     }
 }
