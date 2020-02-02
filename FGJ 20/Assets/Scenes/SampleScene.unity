@@ -164,6 +164,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
+      propertyPath: speed
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
+      propertyPath: flyduration
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: playerid
@@ -208,7 +216,19 @@ PrefabInstance:
         type: 3}
       propertyPath: pui
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1176587283}
+    - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: selectionObject
+      value: 
+      objectReference: {fileID: 8983089062726978482, guid: 3e9da40f58889dc479e46a96cde46628,
+        type: 3}
+    - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: placementObject
+      value: 
+      objectReference: {fileID: 8983089062726978482, guid: 5e98c4c9216143246a482534cddc34b0,
+        type: 3}
     - target: {fileID: 8118117585034218529, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: horizontal
@@ -1541,6 +1561,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1176587283 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1672136768, guid: 0ffbd15806c65774fb5ace6d3518523f,
+    type: 3}
+  m_PrefabInstance: {fileID: 64789305}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 54eb182d62f42274887a44bf24cb2e77, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1193817605
 GameObject:
   m_ObjectHideFlags: 0

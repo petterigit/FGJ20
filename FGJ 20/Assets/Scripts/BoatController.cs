@@ -74,7 +74,7 @@ public class BoatController : MonoBehaviour
 
         // Calculate health based on pixels
         currentPixels = currentPixels - pixels.Length;
-        bh.sinkingPercentage = currentPixels / maxPixels;
+        bh.sinkingPercentage = (float) currentPixels / (float) maxPixels;
 
         // Return the stolen piece
         Texture2D planktex = new Texture2D(size.x, size.y);
@@ -116,7 +116,7 @@ public class BoatController : MonoBehaviour
 
         // Update health
         currentPixels = Mathf.Clamp(currentPixels + addedPixels, 0, maxPixels);
-        bh.sinkingPercentage = currentPixels / maxPixels;
+        bh.sinkingPercentage = (float) currentPixels / (float) maxPixels;
 
         tex.Apply(false, false);
         Sprite newSprite = Sprite.Create(tex, sr.sprite.rect, pivot);
