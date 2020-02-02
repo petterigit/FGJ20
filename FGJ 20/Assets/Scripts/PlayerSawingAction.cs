@@ -12,6 +12,7 @@ public class PlayerSawingAction : MonoBehaviour
     public PlayerUI pui;
     public GameObject selectionObject;
     public GameObject placementObject;
+    public PlayerAudioController pac;
     private GameObject selection;
     private GameObject placement;
 
@@ -69,14 +70,17 @@ public class PlayerSawingAction : MonoBehaviour
                 if(Input.GetButtonDown(actionButtons[i])) {
                     if(actionButtons[i] == combolist[comboiter]) {
                         comboiter++;
+                        pac.PlayCorrect();
                         pui.GenerateInputs(combolist, comboiter);
                         if(comboiter >= combolist.Length) {
                             DoSaw();
+                            pac.PlayPickup();
                             CancelCombo();
                             break;
                         }
                     }
                     else {
+                        pac.PlayFalse();
                         CancelCombo();
                         break;
                     }
@@ -129,6 +133,7 @@ public class PlayerSawingAction : MonoBehaviour
             bc.Place(transform.position, plank);
             plank = null;
             Destroy(placement);
+            pac.PlayPlaceDown();
         }
 
     }

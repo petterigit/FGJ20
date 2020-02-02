@@ -13,6 +13,7 @@ public class UIController : MonoBehaviour
     public Slider blueslider;
     public TextMeshProUGUI bluepercentage;
     public GameObject gameoverbackground;
+    public Text gameovertext;
     // Start is called before the first frame update
     
     public void SetHealth(float percentage, int team) {
@@ -32,8 +33,16 @@ public class UIController : MonoBehaviour
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
     }
 
-    public void GameOver()
+    public void GameOver(int team)
     {
+        if (team == 1)
+        {
+            gameovertext.text = "Red team Won! \nBlue Team Lost: (";
+        } else
+        {
+            gameovertext.text = "Blue team Won! \n Red Team Lost :(";
+        }
+        
         gameoverbackground.SetActive(true);
         StartCoroutine(waiter());
 
