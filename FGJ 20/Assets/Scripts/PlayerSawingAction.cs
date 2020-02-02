@@ -10,6 +10,10 @@ public class PlayerSawingAction : MonoBehaviour
     public BoatController bc;
     public InputComboGeneration icg;
     public PlayerUI pui;
+    public GameObject selectionObject;
+    public GameObject placementObject;
+    private GameObject selection;
+    private GameObject placement;
 
 
     public bool isComboing = false; 
@@ -46,6 +50,20 @@ public class PlayerSawingAction : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        // Draw the selection area
+        if(isSawing) {
+            if(selection != null) {
+                selection.GetComponent<SelectionHandling>().SetSelection(sawStart, transform.position);
+            }
+        }
+
+        // Draw placement area
+        if(isCarrying) {
+            if(placement != null) {
+                placement.GetComponent<PlacementHandling>().MovePlacement(transform.position);
+            }
+        }
+
         if(isComboing) {
             for(int i=0; i<actionButtons.Length; i++) {
                 if(Input.GetButtonDown(actionButtons[i])) {
@@ -74,7 +92,9 @@ public class PlayerSawingAction : MonoBehaviour
         {
             isSawing = true;
             sawStart = transform.position;
-
+            if(enemybc.CheckIfInside(sawStart)) {
+                selection = Instantiate(selectionObject);
+            }
         }
 
         // Stop Sawing
@@ -108,6 +128,7 @@ public class PlayerSawingAction : MonoBehaviour
             isCarrying = false;
             bc.Place(transform.position, plank);
             plank = null;
+            Destroy(placement);
         }
 
     }
@@ -117,6 +138,9 @@ public class PlayerSawingAction : MonoBehaviour
         if(plank != null)
         {
             isCarrying = true;
+            // Draw placement area
+            placement = Instantiate(placementObject);
+            placement.GetComponent<PlacementHandling>().SetPlacement(transform.position, plank.bounds.size);
         }
     }
 
@@ -129,5 +153,6 @@ public class PlayerSawingAction : MonoBehaviour
         sawEnd = initVector;
 
         pui.DestroyInputs();
+        Destroy(selection);
     }
 }
