@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D ownCollider;
     public PlayerHammerAction pha;
     public PlayerAudioController pac;
+    public HitCDBarHandler hitCD;
     public int tackleCDtime;
     public float tackleRadius;
 
@@ -52,6 +53,8 @@ public class PlayerMovement : MonoBehaviour
             tackleCD--;
         }
         
+        hitCD.SetBar((float) tackleCD / (float) tackleCDtime);
+
         wallDirection[1] = 0;
         wallDirection[0] = 0;
 
