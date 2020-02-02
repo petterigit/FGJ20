@@ -207,8 +207,28 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 6feec44b70a5ef749b1839ab95760559,
+      objectReference: {fileID: 21300000, guid: 4af870a840a5fc2459035f201b5e8d11,
         type: 3}
+    - target: {fileID: 5403368708559145123, guid: 6e4425dcb3460da4ba50b82ad0ceefe2,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403368708559145123, guid: 6e4425dcb3460da4ba50b82ad0ceefe2,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403368708559145123, guid: 6e4425dcb3460da4ba50b82ad0ceefe2,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5403368708559145123, guid: 6e4425dcb3460da4ba50b82ad0ceefe2,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e4425dcb3460da4ba50b82ad0ceefe2, type: 3}
 --- !u!1001 &361055904
@@ -387,7 +407,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 0e40acf1ded203e428b064829abc3677,
+      objectReference: {fileID: 21300000, guid: 7f5695de55bc4484d82579efc491971a,
         type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6e4425dcb3460da4ba50b82ad0ceefe2, type: 3}
@@ -710,7 +730,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: 4c062bd9b655a7547a4e78143a2cb8df,
+      objectReference: {fileID: 21300000, guid: e84c98270da5e294e8237974401e06dc,
         type: 3}
     - target: {fileID: 5403368708559145123, guid: 6e4425dcb3460da4ba50b82ad0ceefe2,
         type: 3}
@@ -819,6 +839,21 @@ PrefabInstance:
       propertyPath: infotext
       value: 
       objectReference: {fileID: 1192884426}
+    - target: {fileID: -4465833945609632344, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: playbutton
+      value: 
+      objectReference: {fileID: 892147274}
+    - target: {fileID: -4465833945609632344, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: infobutton
+      value: 
+      objectReference: {fileID: 1898185421}
+    - target: {fileID: -4465833945609632344, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: exitbutton
+      value: 
+      objectReference: {fileID: 412483156}
     - target: {fileID: 3434100158726372576, guid: b1b344ece27909245b8da558a7c3c1fe,
         type: 3}
       propertyPath: m_Controller
@@ -832,12 +867,12 @@ PrefabInstance:
     - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
         type: 3}
       propertyPath: m_Size.x
-      value: 4
+      value: 0.21429315
       objectReference: {fileID: 0}
     - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
         type: 3}
       propertyPath: m_Size.y
-      value: 3
+      value: 0.25038242
       objectReference: {fileID: 0}
     - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
         type: 3}
@@ -848,6 +883,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_SpriteTilingProperty.oldSize.y
       value: 2.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: m_UsedByComposite
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: -0.43834543
+      objectReference: {fileID: 0}
+    - target: {fileID: 3434100158726372583, guid: b1b344ece27909245b8da558a7c3c1fe,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.059773877
       objectReference: {fileID: 0}
     - target: {fileID: 4487900508668471636, guid: b1b344ece27909245b8da558a7c3c1fe,
         type: 3}
