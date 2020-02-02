@@ -197,6 +197,31 @@ PrefabInstance:
       propertyPath: flyduration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.296493
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Offset.x
+      value: -0.011859417
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921942, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: b1cfeccc5dc72fc40ae13580cf7ca904, type: 2}
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: playerid
@@ -411,8 +436,8 @@ MonoBehaviour:
   - Fire2
   - Fire3
   - Fire4
-  minComboLength: 2
-  maxComboLength: 8
+  minComboLength: 4
+  maxComboLength: 14
 --- !u!4 &100458835
 Transform:
   m_ObjectHideFlags: 0
@@ -1129,87 +1154,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741738612}
   m_CullTransparentMesh: 0
---- !u!1 &756242082
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 756242084}
-  - component: {fileID: 756242083}
-  m_Layer: 0
-  m_Name: Lokki
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &756242083
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756242082}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
-  m_MotionVectors: 1
-  m_LightProbeUsage: 1
-  m_ReflectionProbeUsage: 1
-  m_RayTracingMode: 0
-  m_RenderingLayerMask: 1
-  m_RendererPriority: 0
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
-  m_StaticBatchInfo:
-    firstSubMesh: 0
-    subMeshCount: 0
-  m_StaticBatchRoot: {fileID: 0}
-  m_ProbeAnchor: {fileID: 0}
-  m_LightProbeVolumeOverride: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_ReceiveGI: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_StitchLightmapSeams: 1
-  m_SelectedEditorRenderState: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: 0.5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 54215843
-  m_SortingLayer: 4
-  m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 9d11a144159ab16498efd25a3ce8efbc, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_FlipX: 0
-  m_FlipY: 0
-  m_DrawMode: 0
-  m_Size: {x: 6.14, y: 2.98}
-  m_AdaptiveModeThreshold: 0.5
-  m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
-  m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
---- !u!4 &756242084
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 756242082}
-  m_LocalRotation: {x: 0, y: -0, z: 0.7071068, w: -0.7071068}
-  m_LocalPosition: {x: -10.25, y: 0.81, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 12
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 270}
 --- !u!1 &787237964
 GameObject:
   m_ObjectHideFlags: 0
@@ -3212,6 +3156,21 @@ PrefabInstance:
       propertyPath: flyduration
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 1.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7010203241305921942, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d30b5441dfcfe9d458e76da6e23a6602, type: 2}
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: enemybc
@@ -3239,6 +3198,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8983089062726978482, guid: 5e98c4c9216143246a482534cddc34b0,
         type: 3}
+    - target: {fileID: 8118117585034218529, guid: 0ffbd15806c65774fb5ace6d3518523f,
+        type: 3}
+      propertyPath: tackleCDtime
+      value: 600
+      objectReference: {fileID: 0}
     - target: {fileID: 8118117585034218530, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: m_LocalPosition.x

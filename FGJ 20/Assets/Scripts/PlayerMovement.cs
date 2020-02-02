@@ -16,20 +16,27 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public BoxCollider2D ownCollider;
     public PlayerHammerAction pha;
+    public int tackleCDtime;
 
     private bool hammertime = false;
     private int cooldown = 10;
+    private int tackleCD;
     private int speedMultiplier = 3;
     private Collider2D[] results;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        tackleCD = tackleCDtime;
     }
 
     // Update is called once per frame
     void FixedUpdate()
     {
+        if (tackleCD != 0) {
+            tackleCD--;
+        }
+        
 		if(psa.isComboing) {
             // Set hammering animation here
             animator.SetBool("Sawtime", false);
@@ -50,17 +57,22 @@ public class PlayerMovement : MonoBehaviour
                     var enemy = results[i].gameObject;
                     if (Input.GetButton(hammerbutton)) 
                     {
-                        Debug.Log("It's hammer time");
-                        // Get direction
-                        Vector3 direction;
-                        var myPos = transform.position;
-                        var enemyPos = enemy.transform.position;
-                        var heading = enemyPos-myPos;
+                        
+                        if (tackleCD == 0)
+                        {
+                            Debug.Log("It's hammer time");
+                            // Get direction
+                            Vector3 direction;
+                            var myPos = transform.position;
+                            var enemyPos = enemy.transform.position;
+                            var heading = enemyPos-myPos;
 
-                        direction = heading.normalized;
-                        // Start hammer action
-                        enemy.GetComponent<PlayerHammerAction>().initFly(direction);
-                    }   
+                            direction = heading.normalized;
+                            // Start hammer action
+                            enemy.GetComponent<PlayerHammerAction>().initFly(direction);
+                            tackleCD = tackleCDtime;
+                        }
+                    }
                 }
             }
         }
