@@ -106,11 +106,13 @@ public class PlayerMovement : MonoBehaviour
         if ((dy != 0) || (dx != 0))
         {
             rb.MoveRotation(Mathf.Atan2(v, h) * 180 / Mathf.PI + 90);
-            animator.SetFloat("Speed", 1);
+            animator.SetBool("Walk", true);
+            animator.SetBool("PlankWalk", true);
         }
         else
         {
-            animator.SetFloat("Speed", 0);
+            animator.SetBool("Walk", false);
+            animator.SetBool("PlankWalk", false);
         }
         Vector2 newPosition = new Vector2(transform.position.x + dx, transform.position.y + dy);
 
