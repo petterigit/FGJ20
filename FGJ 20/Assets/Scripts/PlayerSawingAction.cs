@@ -19,9 +19,9 @@ public class PlayerSawingAction : MonoBehaviour
     public bool isComboing = false; 
 
     [SerializeField]
-    private bool isSawing = false;
+    public bool isSawing = false;
     [SerializeField]
-    private bool isCarrying = false;
+    public bool isCarrying = false;
 
     [SerializeField]
     private Vector2 sawStart;
@@ -136,7 +136,7 @@ public class PlayerSawingAction : MonoBehaviour
     private void DoSaw() {
         plank = enemybc.Saw(sawStart, sawEnd);
         if(plank != null)
-        {
+        {   
             isCarrying = true;
             // Draw placement area
             placement = Instantiate(placementObject);
