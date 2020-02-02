@@ -69,12 +69,12 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Hammertime", false);
 
         }
-        if (Input.GetButton(hammerbutton)) 
-        {
-            if (tackleCD == 0)
-            {
-                pac.PlaySwing();
-            }
+
+        bool hitted = false;
+        if(tackleCD <= 0 && Input.GetButton(hammerbutton)) {
+            hitted = true;
+            tackleCD = tackleCDtime;
+            pac.PlaySwing();
         }
 
         results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x*tackleRadius);
@@ -82,28 +82,24 @@ public class PlayerMovement : MonoBehaviour
         {
             for (int i=0; i<results.Length; i++) 
             {
-                if (Input.GetButton(hammerbutton)) 
-                    {
-                        if (tackleCD == 0)
-                        {
-                            if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
-                                var enemy = results[i].gameObject;
-                                
-                                pac.PlayHit();
-                                // Get direction
-                                Vector3 direction;
-                                var myPos = transform.position;
-                                var enemyPos = enemy.transform.position;
-                                var heading = enemyPos-myPos;
+                if(hitted) {
+                    if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
+                        var enemy = results[i].gameObject;
+                        
+                        pac.PlayHit();
+                        // Get direction
+                        Vector3 direction;
+                        var myPos = transform.position;
+                        var enemyPos = enemy.transform.position;
+                        var heading = enemyPos-myPos;
 
-                                direction = heading.normalized;
-                                // Start hammer action
-                                enemy.GetComponent<PlayerHammerAction>().initFly(direction);
-                                
-                            }
-                            tackleCD = tackleCDtime;
-                        }
+                        direction = heading.normalized;
+                        // Start hammer action
+                        enemy.GetComponent<PlayerHammerAction>().initFly(direction);
+                        
                     }
+                }
+                            
                 if (results[i].gameObject.name == "BorderN") {
                     wallDirection[0] = 1;
                     Debug.Log("Wall");
