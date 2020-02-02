@@ -8,6 +8,7 @@ public class PlayerUI : MonoBehaviour
     public Transform player;
     public Vector3 offset;
     public float margin;
+    public float highlightScale;
     public Sprite[] sprites;
     public GameObject button;
 
@@ -35,6 +36,9 @@ public class PlayerUI : MonoBehaviour
                 newButton.transform.position += player.position + offset;
                 newButton.transform.SetParent(transform, true);
                 newButton.GetComponent<SpriteRenderer>().sprite = sprites[iter];
+                if(i == startingIndex) {
+                    newButton.transform.localScale *= highlightScale;
+                }
             }
         }
     }

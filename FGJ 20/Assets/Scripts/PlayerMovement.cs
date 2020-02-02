@@ -6,6 +6,10 @@ public class PlayerMovement : MonoBehaviour
 {
 
     public float speed;
+    public float boatSpeed = 3f;
+    public float plankSpeed = 2f;
+    public float waterSpeed = 1f;
+    public float sawSpeed = 1.5f;
     public string horizontal;
     public string vertical;
     public string hammerbutton;
@@ -106,9 +110,9 @@ public class PlayerMovement : MonoBehaviour
 
     void GetDash()
     {
-        if (Input.GetButton(dashbutton))
+        if (Input.GetButton(dashbutton) && !psa.isSawing)
         {
-            if (cooldown == 0)
+            if (cooldown <= 0)
             {
                 Debug.Log("Dash");
                 cooldown = 120;
@@ -127,6 +131,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Move()
     {
+        if (psa.isSawing) {
+            speed = sawSpeed;
+        }
+
         float v = Input.GetAxis(vertical);
         float h = Input.GetAxis(horizontal);
 
@@ -186,11 +194,11 @@ public class PlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "Boat")
         {
-            speed = 3;
+            speed = boatSpeed;
         }
         else if (col.gameObject.tag == "Plank")
         {
-            speed = 2;
+            speed = plankSpeed;
         }
     }
 
@@ -198,7 +206,7 @@ public class PlayerMovement : MonoBehaviour
     {
         if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank")
         {
-            speed = 1;
+            speed = waterSpeed;
         }
     }
 
