@@ -189,13 +189,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7010203241305921942, guid: 0ffbd15806c65774fb5ace6d3518523f,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: b1cfeccc5dc72fc40ae13580cf7ca904, type: 2}
-=======
     - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
       propertyPath: speed
       value: 3
@@ -204,7 +197,6 @@ PrefabInstance:
       propertyPath: flyduration
       value: 1
       objectReference: {fileID: 0}
->>>>>>> 65cbe8f6116d3f1ea68f175df6cb8846002a4ad2
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: playerid
@@ -249,9 +241,6 @@ PrefabInstance:
         type: 3}
       propertyPath: pui
       value: 
-<<<<<<< HEAD
-      objectReference: {fileID: 595632384}
-=======
       objectReference: {fileID: 1176587283}
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
@@ -265,7 +254,6 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8983089062726978482, guid: 5e98c4c9216143246a482534cddc34b0,
         type: 3}
->>>>>>> 65cbe8f6116d3f1ea68f175df6cb8846002a4ad2
     - target: {fileID: 8118117585034218529, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: horizontal
@@ -598,35 +586,6 @@ MonoBehaviour:
   sinkingSpeedMin: 0
   sinkingSpeedMax: 2
   sinkingPercentage: 0
-<<<<<<< HEAD
---- !u!1 &183753131 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8118117585034218540, guid: 0ffbd15806c65774fb5ace6d3518523f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8118117586619797899}
-  m_PrefabAsset: {fileID: 0}
---- !u!61 &183753135 stripped
-BoxCollider2D:
-  m_CorrespondingSourceObject: {fileID: 7010203241305921937, guid: 0ffbd15806c65774fb5ace6d3518523f,
-    type: 3}
-  m_PrefabInstance: {fileID: 8118117586619797899}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &183753138
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 183753131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75f4cece55280a14cbcdc2686ea43f00, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3
-  flyduration: 1
-=======
->>>>>>> 65cbe8f6116d3f1ea68f175df6cb8846002a4ad2
 --- !u!1 &271954968
 GameObject:
   m_ObjectHideFlags: 0
@@ -3164,13 +3123,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-<<<<<<< HEAD
-    - target: {fileID: 7010203241305921942, guid: 0ffbd15806c65774fb5ace6d3518523f,
-        type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: d30b5441dfcfe9d458e76da6e23a6602, type: 2}
-=======
     - target: {fileID: 183753138, guid: 0ffbd15806c65774fb5ace6d3518523f, type: 3}
       propertyPath: speed
       value: 3
@@ -3179,7 +3131,6 @@ PrefabInstance:
       propertyPath: flyduration
       value: 1
       objectReference: {fileID: 0}
->>>>>>> 65cbe8f6116d3f1ea68f175df6cb8846002a4ad2
     - target: {fileID: 8118117584801088874, guid: 0ffbd15806c65774fb5ace6d3518523f,
         type: 3}
       propertyPath: enemybc
