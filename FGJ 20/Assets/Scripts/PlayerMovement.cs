@@ -60,6 +60,8 @@ public class PlayerMovement : MonoBehaviour
             sound = PlayerAudioController.State.stop;
             animator.SetBool("Sawtime", false);
             animator.SetBool("Hammertime", true);
+            sound = PlayerAudioController.State.stop;
+            pac.SetSoundState(sound);
             return;
         } 
         else 
@@ -67,32 +69,41 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Hammertime", false);
 
         }
+        if (Input.GetButton(hammerbutton)) 
+        {
+            if (tackleCD == 0)
+            {
+                pac.PlaySwing();
+            }
+        }
+
         results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x*tackleRadius);
         if (results.Length > 0) 
         {
             for (int i=0; i<results.Length; i++) 
             {
-                if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
-                    var enemy = results[i].gameObject;
-                    if (Input.GetButton(hammerbutton)) 
+                if (Input.GetButton(hammerbutton)) 
                     {
-                        
                         if (tackleCD == 0)
                         {
-                            Debug.Log("It's hammer time");
-                            // Get direction
-                            Vector3 direction;
-                            var myPos = transform.position;
-                            var enemyPos = enemy.transform.position;
-                            var heading = enemyPos-myPos;
+                            if (results[i].gameObject.tag == "Player" && results[i] != ownCollider) {
+                                var enemy = results[i].gameObject;
+                                
+                                pac.PlayHit();
+                                // Get direction
+                                Vector3 direction;
+                                var myPos = transform.position;
+                                var enemyPos = enemy.transform.position;
+                                var heading = enemyPos-myPos;
 
-                            direction = heading.normalized;
-                            // Start hammer action
-                            enemy.GetComponent<PlayerHammerAction>().initFly(direction);
+                                direction = heading.normalized;
+                                // Start hammer action
+                                enemy.GetComponent<PlayerHammerAction>().initFly(direction);
+                                
+                            }
                             tackleCD = tackleCDtime;
                         }
                     }
-                }
                 if (results[i].gameObject.name == "BorderN") {
                     wallDirection[0] = 1;
                     Debug.Log("Wall");
@@ -127,6 +138,7 @@ public class PlayerMovement : MonoBehaviour
             if (cooldown <= 0)
             {
                 //Debug.Log("Dash");
+                pac.PlayDash();
                 cooldown = 120;
                 speedMultiplier = 3;
             }
@@ -200,7 +212,7 @@ public class PlayerMovement : MonoBehaviour
             if (psa.isCarrying) 
             {
                 animator.SetBool("PlankWalk", false);
-                animator.SetBool("Plank", true);
+                animator.SetBool("Planktime", true);
             } else if (psa.isSawing) 
             {
                 animator.SetBool("Walk", false);
