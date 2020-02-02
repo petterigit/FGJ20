@@ -10,6 +10,7 @@ TagManager:
   - PlayButton
   - InfoButton
   - ExitButton
+  - Wall
   layers:
   - Default
   - TransparentFX

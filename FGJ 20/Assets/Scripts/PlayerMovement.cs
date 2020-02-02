@@ -17,12 +17,14 @@ public class PlayerMovement : MonoBehaviour
     public BoxCollider2D ownCollider;
     public PlayerHammerAction pha;
     public int tackleCDtime;
+    public float tackleRadius;
 
     private bool hammertime = false;
     private int cooldown = 10;
     private int tackleCD;
     private int speedMultiplier = 3;
     private Collider2D[] results;
+    private int[] wallDirection = {0, 0};
 
     void Start()
     {
@@ -37,6 +39,9 @@ public class PlayerMovement : MonoBehaviour
             tackleCD--;
         }
         
+        wallDirection[1] = 0;
+        wallDirection[0] = 0;
+
 		if(psa.isComboing) {
             // Set hammering animation here
             animator.SetBool("Sawtime", false);
@@ -48,7 +53,7 @@ public class PlayerMovement : MonoBehaviour
             animator.SetBool("Hammertime", false);
 
         }
-        results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x/2);
+        results = Physics2D.OverlapCircleAll(transform.position, ownCollider.size.x*tackleRadius);
         if (results.Length > 0) 
         {
             for (int i=0; i<results.Length; i++) 
@@ -74,10 +79,24 @@ public class PlayerMovement : MonoBehaviour
                         }
                     }
                 }
+                if (results[i].gameObject.name == "BorderN") {
+                    wallDirection[0] = 1;
+                    Debug.Log("Wall");
+                } else if (results[i].gameObject.name == "BorderS") {
+                    wallDirection[0] = 2;
+                    Debug.Log("Wall");
+                }
+                if (results[i].gameObject.name == "BorderW") {
+                    wallDirection[1] = 1;
+                    //Debug.Log("Wall");
+                } else if (results[i].gameObject.name == "BorderE") {
+                    wallDirection[1] = 2;
+                    //Debug.Log("Wall");
+                }
             }
         }
 
-        Move(speed);
+        Move();
         
         GetDash();
 
@@ -106,13 +125,22 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    void Move(float speed)
+    void Move()
     {
         float v = Input.GetAxis(vertical);
         float h = Input.GetAxis(horizontal);
 
         float dy = v * speed * speedMultiplier * Time.deltaTime;
         float dx = h * speed * speedMultiplier * Time.deltaTime;
+
+        if ((wallDirection[0] == 1 && dy > 0) || (wallDirection[0] == 2 && dy < 0)) {
+            //Debug.Log("dy = 0");
+            dy = 0;
+        }
+        if ((wallDirection[1] == 1 && dx > 0) || (wallDirection[1] == 2 && dx < 0)) {
+            //Debug.Log("dx = 0");
+            dx = 0;
+        }
 
         if ((dy != 0) || (dx != 0))
         {
