@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public BoxCollider2D ownCollider;
     public PlayerHammerAction pha;
+    public PlayerAudioController pac;
     public int tackleCDtime;
     public float tackleRadius;
 
@@ -29,6 +30,12 @@ public class PlayerMovement : MonoBehaviour
     private int speedMultiplier = 3;
     private Collider2D[] results;
     private int[] wallDirection = {0, 0};
+    private bool isSwimming = false;
+    private PlayerAudioController.State sound = PlayerAudioController.State.stop;
+    /*
+    private enum Ground {boat, plank, water, running};
+    private Ground ground;
+    */
 
     void Start()
     {
@@ -39,6 +46,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
+        sound = PlayerAudioController.State.stop;
+
         if (tackleCD != 0) {
             tackleCD--;
         }
@@ -48,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
 		if(psa.isComboing) {
             // Set hammering animation here
+            sound = PlayerAudioController.State.stop;
             animator.SetBool("Sawtime", false);
             animator.SetBool("Hammertime", true);
             return;
@@ -104,6 +114,8 @@ public class PlayerMovement : MonoBehaviour
         
         GetDash();
 
+        pac.SetSoundState(sound);
+
     }
 
 
@@ -114,7 +126,7 @@ public class PlayerMovement : MonoBehaviour
         {
             if (cooldown <= 0)
             {
-                Debug.Log("Dash");
+                //Debug.Log("Dash");
                 cooldown = 120;
                 speedMultiplier = 3;
             }
@@ -127,10 +139,14 @@ public class PlayerMovement : MonoBehaviour
         {
             speedMultiplier = 1;
         }
+        else {
+            sound = PlayerAudioController.State.running;
+        }
     }
 
     void Move()
     {
+
         if (psa.isSawing) {
             speed = sawSpeed;
         }
@@ -152,6 +168,15 @@ public class PlayerMovement : MonoBehaviour
 
         if ((dy != 0) || (dx != 0))
         {
+            // Sounds
+            
+            if(isSwimming) {
+                sound = PlayerAudioController.State.swimming;
+            } 
+            else {
+                sound = PlayerAudioController.State.walking;
+            }
+
             rb.MoveRotation(Mathf.Atan2(v, h) * 180 / Mathf.PI + 90);
 
             if (psa.isCarrying) 
@@ -160,6 +185,7 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("PlankWalk", true);
             } else if (psa.isSawing) 
             {
+                sound = PlayerAudioController.State.sawing;
                 animator.SetBool("Walk", false);
                 animator.SetBool("Sawtime", true);
             } else 
@@ -167,11 +193,10 @@ public class PlayerMovement : MonoBehaviour
                 animator.SetBool("PlankWalk", false);
                 animator.SetBool("Walk", true);    
             }
-            
-            
         }
         else
         {
+            sound = PlayerAudioController.State.stop;
             if (psa.isCarrying) 
             {
                 animator.SetBool("PlankWalk", false);
@@ -192,13 +217,19 @@ public class PlayerMovement : MonoBehaviour
 
     void OnTriggerStay2D(Collider2D col)
     {
+        
         if (col.gameObject.tag == "Boat")
         {
             speed = boatSpeed;
+            isSwimming = false;
         }
         else if (col.gameObject.tag == "Plank")
         {
             speed = plankSpeed;
+            isSwimming = false;
+        }
+        else {
+            isSwimming = true;
         }
     }
 
@@ -207,6 +238,7 @@ public class PlayerMovement : MonoBehaviour
         if (col.gameObject.tag == "Boat" || col.gameObject.tag == "Plank")
         {
             speed = waterSpeed;
+            isSwimming = true;
         }
     }
 
